@@ -1,11 +1,15 @@
-import React from 'react'
+import { ReactNode } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
-function Layout() {
+function Layout({ children }: { children: ReactNode }) {
   return (
-    <div>
-      <p>This is the layout</p>
+    <div className="relative">
+      <Header />
+      <main className="min-h-screen bg-tangerine text-white">{children}</main>
+      <Footer />
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;
