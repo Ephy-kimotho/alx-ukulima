@@ -4,12 +4,10 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 
-  --color-mold-green: "#496cfb";
-  --color-night: "#2d3134";
-  --color-tangerine: "#e9591b";
-  --color-moss-green: "#204e51";
-  --color-avocado: "#1f4e3c"
-
+  --color-mold-green: #496C5B;
+  --color-night: #2d3134;
+  --color-tangerine: #e9591b;
+  --color-moss-green: #204e51;
+  --color-avocado: #1f4e3c;
+  --color-dark-green: #062F1F;
 }
-
-
