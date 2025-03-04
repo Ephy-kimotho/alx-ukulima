@@ -25,15 +25,16 @@ function Subscription() {
         Subscribe to our news letter for the latest farming tips, exclusive
         deals and updates on agricultural products
       </p>
-      <div className="flex bg-white rounded-lg">
+      <div className="bg-white rounded-md max-w-sm  flex items-center">
         <input
           type="text"
+          name="email"
           value={email}
           onChange={(e) => setEmail(e.target.value.trim())}
+          className="border-none  text-night pl-3 flex-1 text-base outline-none placeholder:text-gray-400 w-full bg-transparent py-2"
           placeholder="Enter your email"
-          className="outline-none flex-1 py-2 pl-3 text-black text-base"
         />
-        <Button moreStyles="px-3 cursor-pointer" action={subscribe}>
+        <Button action={subscribe} moreStyles="mx-2 ">
           <IoMdSend size={28} color="#1F4E3C" />
         </Button>
       </div>
