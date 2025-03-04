@@ -42,5 +42,10 @@ export interface TestimonialCardProps {
     message: string
 }
 
+export interface FAQ_QuestionProps {
+    question: string,
+    answer: string
+}
+
 export type LoginInitialValues = Pick<SignUpInitialValues, "email" | "password">
 export type AuthButtonProps = Pick<ButtonProps, "children" | "moreStyles">
