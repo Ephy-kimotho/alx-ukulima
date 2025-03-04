@@ -49,3 +49,4 @@ export interface FAQ_QuestionProps {
 
 export type LoginInitialValues = Pick<SignUpInitialValues, "email" | "password">
 export type AuthButtonProps = Pick<ButtonProps, "children" | "moreStyles">
+export type ContactFormValues = Pick<SignUpInitialValues, "firstName" | "email"> &Pick<TestimonialCardProps, "message">
