@@ -12,4 +12,10 @@
   --color-dark-green: #062F1F;
   --color-imperial-red: #ED2939;
   --color-lime-green: #06945D;
+  --color-grey: #F0F0F0;
+
+  --inset-shadow-overlay: inset 0 0 0 1000px rgba(0, 0, 0, 0.75);
+  --inset-shadow-translucent: inset 0 0 0 600px rgba(0, 0, 0, 0.4);
+
+  --bg-postion: 70%;
 }

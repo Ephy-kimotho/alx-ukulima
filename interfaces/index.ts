@@ -1,4 +1,5 @@
 import type { ReactNode, ComponentType } from "react"
+import { StaticImageData } from "next/image"
 
 export interface ButtonProps {
     children: ReactNode,
@@ -27,6 +28,18 @@ export interface SignUpInitialValues {
     email: string,
     phone: string,
     password: string,
+}
+
+export interface CategoryCardProps {
+    categoryImage: StaticImageData,
+    categoryName: string
+
+}
+
+export interface TestimonialCardProps {
+    image: StaticImageData,
+    name: string,
+    message: string
 }
 
 export type LoginInitialValues = Pick<SignUpInitialValues, "email" | "password">
