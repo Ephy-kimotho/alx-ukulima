@@ -6,7 +6,7 @@ function Layout({ children }: { children: ReactNode }) {
   return (
     <div className="relative">
       <Header />
-      <main className="min-h-screen bg-tangerine text-white">{children}</main>
+      <main className="min-h-screen  text-white">{children}</main>
       <Footer />
     </div>
   );

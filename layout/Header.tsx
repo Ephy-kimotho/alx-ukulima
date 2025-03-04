@@ -15,7 +15,7 @@ function Header() {
   };
 
   return (
-    <header className="bg-white py-4 px-2 lg:px-4 flex justify-between items-center ">
+    <header className="bg-white py-4 px-2 lg:px-4 flex justify-between items-center shadow-2xl ">
       {/* Company Logo */}
       <Image
         src={logo}
@@ -82,9 +82,9 @@ function Header() {
 
       {/* MOBILE NAVIGATION BAR */}
       <aside
-        className={`md:hidden fixed top-0 right-0 left-40 min-h-full  pt-5 px-6 flex flex-col gap-10 ${
+        className={`md:hidden fixed top-0 right-0 left-20 min-h-full  pt-5 px-6 flex flex-col gap-10 ${
           isMenuOpen ? "-translate-x-0" : "translate-x-full"
-        } transition-transform duration-300 ease-in-out`}
+        } transition-transform duration-300 ease-in-out z-50`}
         style={{
           background: "rgba(255,255,255, 0.65)",
           backdropFilter: "blur(30px)",
