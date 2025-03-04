@@ -33,3 +33,14 @@ export const loginSchema = Yup.object({
     email: Yup.string().email("Invalid email address").required("Required*"),
     password: Yup.string().required("Required*"),
 });
+
+export const contactFormSchema = Yup.object({
+    firstName: Yup.string()
+      .matches(/^[^\d]+$/, "First name should not have numerical digits")
+      .min(3, "Should be atleast 3 characters")
+      .required("Required*"),
+    email: Yup.string().email("Invalid email address").required("Required*"),
+    message: Yup.string()
+      .min(10, "Should be atleast 10 characters.")
+      .required("Required*"),
+  });
