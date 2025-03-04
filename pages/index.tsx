@@ -1,10 +1,17 @@
 import Layout from "@/layout/Layout";
 import type { ReactElement } from "react";
+import Landing from "@/components/home/Landing";
+import FeaturedProducts from "@/components/home/FeaturedProducts";
+import Testimonials from "@/components/home/Testimonials";
+import CTA from "@/components/home/CTA";
 
 function Home() {
   return (
     <section>
-      <p>This is the home page</p>
+      <Landing />
+      <FeaturedProducts />
+      <Testimonials />
+      <CTA />
     </section>
   );
 }
