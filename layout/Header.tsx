@@ -15,7 +15,7 @@ function Header() {
   };
 
   return (
-    <header className="bg-white py-4 px-5 flex justify-between items-center ">
+    <header className="bg-white py-4 px-2 lg:px-4 flex justify-between items-center ">
       {/* Company Logo */}
       <Image
         src={logo}
@@ -24,12 +24,12 @@ function Header() {
       />
 
       {/* Navigation links */}
-      <nav className="hidden md:flex gap-12 items-center">
+      <nav className="hidden md:flex gap-6 lg:gap-12 items-center">
         <Link
           href="/"
           className={`${
             asPath === "/" && "text-tangerine"
-          } font-medium text-xl text-night hover:text-tangerine tracking-wide`}
+          } font-medium text-lg  text-night hover:text-tangerine tracking-wide`}
         >
           Home
         </Link>
@@ -37,7 +37,7 @@ function Header() {
           href="/products"
           className={`${
             asPath === "/products" && "text-tangerine"
-          }  font-medium text-xl text-night hover:text-tangerine tracking-wide`}
+          }  font-medium text-lg text-night hover:text-tangerine tracking-wide`}
         >
           Products
         </Link>
@@ -45,7 +45,7 @@ function Header() {
           href="/about"
           className={`${
             asPath === "/about" && "text-tangerine"
-          } font-medium text-xl text-night hover:text-tangerine tracking-wide`}
+          } font-medium text-lg text-night hover:text-tangerine tracking-wide`}
         >
           About us
         </Link>
@@ -53,7 +53,7 @@ function Header() {
           href="/contact"
           className={`${
             asPath === "/contact" && "text-tangerine"
-          } font-medium text-xl text-night hover:text-tangerine tracking-wide`}
+          } font-medium text-lg text-night hover:text-tangerine tracking-wide`}
         >
           Contact us
         </Link>
