@@ -29,4 +29,5 @@ export interface SignUpInitialValues {
     password: string,
 }
 
+export type LoginInitialValues = Pick<SignUpInitialValues, "email" | "password">
 export type AuthButtonProps = Pick<ButtonProps, "children" | "moreStyles">
