@@ -15,13 +15,15 @@ function Header() {
   };
 
   return (
-    <header className="bg-white py-4 px-2 lg:px-4 flex justify-between items-center shadow-2xl ">
+    <header className="bg-white py-4 px-2 lg:px-4 flex justify-between items-center shadow-lg relative z-30">
       {/* Company Logo */}
-      <Image
-        src={logo}
-        alt="Company logo"
-        className="w-9 h-9 sm:w-12 sm:h-12"
-      />
+      <Link href="/" className="cursor-pointer">
+        <Image
+          src={logo}
+          alt="Company logo"
+          className="w-9 h-9 sm:w-12 sm:h-12"
+        />
+      </Link>
 
       {/* Navigation links */}
       <nav className="hidden md:flex gap-6 lg:gap-12 items-center">
@@ -95,8 +97,8 @@ function Header() {
           <X color="#ED2939" size={32} />
         </Button>
 
+        {/*nav links */}
         <div className="flex-1 flex  flex-col justify-between items-center pb-8">
-          {/*nav links */}
           <nav className="flex flex-col gap-8 items-start">
             <Link
               href="/"
@@ -118,7 +120,7 @@ function Header() {
               href="/about"
               className={`${
                 asPath === "/about" && "text-tangerine"
-              }font-medium text-lg text-night tracking-wide`}
+              } font-medium text-lg text-night tracking-wide`}
             >
               About us
             </Link>
@@ -126,7 +128,7 @@ function Header() {
               href="/contact"
               className={`${
                 asPath === "/contact" && "text-tangerine"
-              }font-medium text-lg text-night tracking-wide`}
+              } font-medium text-lg text-night tracking-wide`}
             >
               Contact us
             </Link>
