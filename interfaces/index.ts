@@ -47,6 +47,15 @@ export interface FAQ_QuestionProps {
     answer: string
 }
 
+export interface ProductDetailProps {
+    id: number | string,
+    imageUrl: string | StaticImageData,
+    name: string,
+    category: string,
+    price: string,
+    description: string
+}
+
 export type LoginInitialValues = Pick<SignUpInitialValues, "email" | "password">
 export type AuthButtonProps = Pick<ButtonProps, "children" | "moreStyles">
-export type ContactFormValues = Pick<SignUpInitialValues, "firstName" | "email"> &Pick<TestimonialCardProps, "message">
+export type ContactFormValues = Pick<SignUpInitialValues, "firstName" | "email"> & Pick<TestimonialCardProps, "message">
