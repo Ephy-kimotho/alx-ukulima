@@ -36,11 +36,23 @@ export const loginSchema = Yup.object({
 
 export const contactFormSchema = Yup.object({
     firstName: Yup.string()
-      .matches(/^[^\d]+$/, "First name should not have numerical digits")
-      .min(3, "Should be atleast 3 characters")
-      .required("Required*"),
+        .matches(/^[^\d]+$/, "First name should not have numerical digits")
+        .min(3, "Should be atleast 3 characters")
+        .required("Required*"),
     email: Yup.string().email("Invalid email address").required("Required*"),
     message: Yup.string()
-      .min(10, "Should be atleast 10 characters.")
-      .required("Required*"),
-  });
+        .min(10, "Should be atleast 10 characters.")
+        .required("Required*"),
+});
+
+export const checkoutSchema = Yup.object({
+    destination: Yup.string().min(4, "Should be more than 4 characters.").required("Required*"),
+    phone: Yup.string()
+        .matches(/^\S*$/, "Phone number must not contain whitespaces")
+        .matches(
+            /^\d+$/,
+            "Phone number can only contain digits"
+        )
+        .matches(/^\d{10,}$/, "Phone number must be at least 10 digits long")
+        .required("Required*"),
+})
