@@ -56,6 +56,24 @@ export interface ProductDetailProps {
     description: string
 }
 
+export interface CartProductProps {
+    imageUrl: string | StaticImageData,
+    name: string,
+    price: number | string,
+    quantity: number
+}
+
+export interface OrderSummaryProps {
+    subtotal: number,
+    deliveryFee: number,
+    grandTotal: number
+}
+
+export interface CheckoutInitialValues {
+    destination: string,
+    phone: string
+}
+
 export type LoginInitialValues = Pick<SignUpInitialValues, "email" | "password">
 export type AuthButtonProps = Pick<ButtonProps, "children" | "moreStyles">
 export type ContactFormValues = Pick<SignUpInitialValues, "firstName" | "email"> & Pick<TestimonialCardProps, "message">
