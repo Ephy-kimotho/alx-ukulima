@@ -12,6 +12,8 @@ function Contact() {
   );
 }
 
-Contact.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+Contact.getLayout = (page: ReactElement) => (
+  <Layout title="Contact">{page}</Layout>
+);
 
 export default Contact;

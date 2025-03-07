@@ -71,6 +71,8 @@ function ProductDetail() {
   );
 }
 
-ProductDetail.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+ProductDetail.getLayout = (page: ReactElement) => (
+  <Layout title="Products">{page}</Layout>
+);
 
 export default ProductDetail;

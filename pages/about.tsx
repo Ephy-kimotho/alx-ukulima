@@ -16,6 +16,6 @@ function About() {
   );
 }
 
-About.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+About.getLayout = (page: ReactElement) => <Layout title="About">{page}</Layout>;
 
 export default About;

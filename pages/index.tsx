@@ -16,6 +16,8 @@ function Home() {
   );
 }
 
-Home.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+Home.getLayout = (page: ReactElement) => (
+  <Layout title="Ukulima">{page}</Layout>
+);
 
 export default Home;

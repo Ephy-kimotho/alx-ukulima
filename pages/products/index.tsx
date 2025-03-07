@@ -31,7 +31,6 @@ function Products() {
             name="filter-select"
             id="filter-select"
             className="text-night cursor-pointer flex-1 md:flex-none  outline-none"
-
           >
             <option defaultValue="" disabled selected>
               -- choose category --
@@ -82,6 +81,8 @@ function Products() {
   );
 }
 
-Products.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+Products.getLayout = (page: ReactElement) => (
+  <Layout title="Products">{page}</Layout>
+);
 
 export default Products;

@@ -17,7 +17,9 @@ function Profile() {
     >
       <div className="space-y-5">
         <FaUserCircle className="size-32 md:size-40 mx-auto text-night" />
-        <p className="text-night text-2xl md:text-3xl font-bold">Hello John Doe.</p>
+        <p className="text-night text-2xl md:text-3xl font-bold">
+          Hello John Doe.
+        </p>
       </div>
       <div className="text-black space-y-4 w-[80%] max-w-sm  text-lg mt-5 ">
         <p className="border-b-2 border-b-night py-2">
@@ -41,6 +43,8 @@ function Profile() {
   );
 }
 
-Profile.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+Profile.getLayout = (page: ReactElement) => (
+  <Layout title="Profile">{page}</Layout>
+);
 
 export default Profile;

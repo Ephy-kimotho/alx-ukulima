@@ -60,6 +60,6 @@ function Cart() {
   );
 }
 
-Cart.getLayout = (page: ReactElement) => <Layout>{page}</Layout>;
+Cart.getLayout = (page: ReactElement) => <Layout title="Cart">{page}</Layout>;
 
 export default Cart;
