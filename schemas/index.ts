@@ -3,11 +3,11 @@ import * as Yup from "yup"
 
 
 export const signUpSchema = Yup.object({
-    firstName: Yup.string()
+    first_name: Yup.string()
         .matches(/^[^\d]+$/, "First name should not have numerical digits")
         .min(3, "Should be atleast 3 characters")
         .required("Required*"),
-    lastName: Yup.string()
+    last_name: Yup.string()
         .matches(/^[^\d]+$/, "Last name should not have numerical digits")
         .min(3, "Should be atleast 3 characters")
         .required("Required*"),
@@ -35,7 +35,7 @@ export const loginSchema = Yup.object({
 });
 
 export const contactFormSchema = Yup.object({
-    firstName: Yup.string()
+    first_name: Yup.string()
         .matches(/^[^\d]+$/, "First name should not have numerical digits")
         .min(3, "Should be atleast 3 characters")
         .required("Required*"),
