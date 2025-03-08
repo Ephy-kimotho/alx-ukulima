@@ -4,7 +4,7 @@ import { contactFormSchema } from "@/schemas";
 import AuthButton from "../common/AuthButton";
 
 const initialValues: ContactFormValues = {
-  firstName: "",
+  first_name: "",
   email: "",
   message: "",
 };
@@ -34,7 +34,7 @@ function ContactForm() {
         onSubmit={handleSubmit}
       >
         <Form className="p-6 md:p-8 rounded-3xl bg-[#D9D9D9]/60 w-11/12 max-w-3xl mx-auto mt-6">
-          <Field name="firstName">
+          <Field name="first_name">
             {({ field, meta }: FieldProps) => (
               <div>
                 <div
