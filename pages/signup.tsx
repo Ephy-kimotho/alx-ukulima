@@ -1,20 +1,26 @@
 import { Formik, Form, FormikHelpers } from "formik";
 import { signUpSchema } from "@/schemas";
 import { nunito } from "@/fonts";
+import { FaUser } from "react-icons/fa6";
+import { Mail, Phone, Eye, EyeOff, TriangleAlert } from "lucide-react";
+import { SignUpInitialValues, User } from "@/interfaces";
+import { useState } from "react";
+import { Toaster, toast } from "react-hot-toast";
+import { useAuth } from "@/providers/AuthProvider";
+import { useRouter } from "next/router";
 import Input from "@/components/common/Input";
 import AuthButton from "@/components/common/AuthButton";
 import logo from "@/public/icons/logo.png";
 import Image from "next/image";
 import Link from "next/link";
 import Head from "next/head";
-import { FaUser } from "react-icons/fa6";
-import { Mail, Phone, Eye, EyeOff } from "lucide-react";
-import { SignUpInitialValues } from "@/interfaces";
-import { useState } from "react";
+import axios from "axios";
 
 function Signup() {
   // State to toggle password visibility
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  const { setUser } = useAuth();
 
   // Function to toggle password visibility
   const togglePassword = () => {
@@ -23,20 +29,40 @@ function Signup() {
 
   // Signup form initial values
   const initialValues: SignUpInitialValues = {
-    firstName: "",
-    lastName: "",
+    first_name: "",
+    last_name: "",
     email: "",
     phone: "",
     password: "",
   };
 
   //Function to handle form submission
-  const handelSubmit = (
+  const handelSubmit = async (
     values: SignUpInitialValues,
     action: FormikHelpers<SignUpInitialValues>
   ) => {
-    console.log(values);
-    action.resetForm();
+    try {
+      const { data } = await axios.post<User>("/api/signup", values);
+      setUser(data);
+
+      toast.success("Account created successfully");
+      router.push("/login");
+      action.resetForm();
+
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        if (err.response?.data.email || err.response?.data.phone) {
+          toast.custom(
+            <div className="text-[#FF8000] w-[70%] max-w-52 p-4 rounded-2xl text-sm bg-white flex gap-3 items-center justify-center border shadow">
+              <TriangleAlert size={24} color="#FF8000" strokeWidth={1.25} />
+              <span>User already exists</span>
+            </div>
+          );
+        } else {
+          toast.error("An error occured, please try again.");
+        }
+      }
+    }
   };
 
   return (
@@ -47,6 +73,7 @@ function Signup() {
         <link rel="icon" href="/icons/favicon.ico" />
       </Head>
       <section className={`${nunito.className}`}>
+        <Toaster position="top-center" />
         <div className="mt-3 ml-3">
           <Link href="/">
             <Image
@@ -74,13 +101,13 @@ function Signup() {
               <Input
                 type="text"
                 Icon={FaUser}
-                name="firstName"
+                name="first_name"
                 placeholder="First Name"
               />
               <Input
                 type="text"
                 Icon={FaUser}
-                name="lastName"
+                name="last_name"
                 placeholder="Last Name"
               />
             </div>
