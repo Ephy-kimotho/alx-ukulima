@@ -1,19 +1,25 @@
 import { Formik, Form, FormikHelpers } from "formik";
-import { Mail, Eye, EyeOff } from "lucide-react";
+import { Mail, Eye, EyeOff, TriangleAlert } from "lucide-react";
 import { nunito } from "@/fonts";
-import { LoginInitialValues } from "@/interfaces";
+import { LoginInitialValues, LoginResponseData } from "@/interfaces";
 import { loginSchema } from "@/schemas";
 import { useState } from "react";
+import { useAuth } from "@/providers/AuthProvider";
+import { Toaster, toast } from "react-hot-toast";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import Input from "@/components/common/Input";
 import AuthButton from "@/components/common/AuthButton";
 import logo from "@/public/icons/logo.png";
 import Head from "next/head";
+import axios from "axios";
 
 function Login() {
   // State to toggle password visibility
   const [showPassword, setShowPassword] = useState(false);
+  const { user, setToken } = useAuth();
+  const router = useRouter();
 
   // Function to toggle password visibility
   const togglePassword = () => {
@@ -27,12 +33,36 @@ function Login() {
   };
 
   //Function to handle form submission
-  const handleSubmit = (
+  const handleSubmit = async (
     values: LoginInitialValues,
     action: FormikHelpers<LoginInitialValues>
   ) => {
-    console.log(values);
-    action.resetForm();
+    try {
+      const { data } = await axios.post<LoginResponseData>(
+        "/api/login",
+        values
+      );
+
+      setToken(data.access);
+      toast.success("Login successfull");
+      router.push("/");
+
+      action.resetForm();
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const message = error.response?.data.non_field_errors;
+        if (message) {
+          toast.custom(
+            <div className="text-[#FF8000] p-4 rounded-2xl text-base bg-white flex items-center  gap-3 justify-center border shadow">
+              <TriangleAlert size={30} color="#FF8000" strokeWidth={1.25} />
+              <span>{message}</span>
+            </div>
+          );
+        } else {
+          toast.error("An error occured, Please try again");
+        }
+      }
+    }
   };
 
   return (
@@ -42,7 +72,8 @@ function Login() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/icons/favicon.ico" />
       </Head>
-      <section className={`${nunito.className} flex`}>
+      <section className={`${nunito.className} flex min-h-screen`}>
+        <Toaster position="top-center" />
         <div className="hidden md:flex bg-[url(@/public/images/farmImage.png)] bg-left-bottom bg-cover justify-center inset-shadow-translucent flex-1">
           <article className="space-y-12 text-white mt-28 text-center">
             <h2 className="font-bold text-4xl">Ukulima</h2>
@@ -74,8 +105,8 @@ function Login() {
           >
             <Form className="w-11/12 max-w-2xl mx-auto min-h-[90vh]  relative">
               <div className="text-center mb-5">
-                <h3 className="text-lime-green font-bold  text-3xl">
-                  Welcome back
+                <h3 className="text-lime-green font-bold  capitalize text-3xl">
+                  Welcome {user ? `back ${user.first_name}` : "Back"}
                 </h3>
                 <p className="text-[#8E8E90]  text-base">
                   Log in to your account

@@ -73,6 +73,10 @@ export interface CheckoutInitialValues {
     phone: string
 }
 
+export interface LoginResponseData {
+    refresh: string,
+    access: string
+}
 
 export type LoginInitialValues = Pick<SignUpInitialValues, "email" | "password">
 export type AuthButtonProps = Pick<ButtonProps, "children" | "moreStyles">
