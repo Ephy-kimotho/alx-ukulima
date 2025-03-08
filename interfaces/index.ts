@@ -21,10 +21,9 @@ export interface InputProps {
     togglePassword?: () => void
 }
 
-
 export interface SignUpInitialValues {
-    firstName: string,
-    lastName: string,
+    first_name: string,
+    last_name: string,
     email: string,
     phone: string,
     password: string,
@@ -74,6 +73,8 @@ export interface CheckoutInitialValues {
     phone: string
 }
 
+
 export type LoginInitialValues = Pick<SignUpInitialValues, "email" | "password">
 export type AuthButtonProps = Pick<ButtonProps, "children" | "moreStyles">
-export type ContactFormValues = Pick<SignUpInitialValues, "firstName" | "email"> & Pick<TestimonialCardProps, "message">
+export type ContactFormValues = Pick<SignUpInitialValues, "first_name" | "email"> & Pick<TestimonialCardProps, "message">
+export type User = Omit<SignUpInitialValues, "password">
