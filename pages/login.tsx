@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useAuth } from "@/providers/AuthProvider";
 import { Toaster, toast } from "react-hot-toast";
 import { useRouter } from "next/router";
+import { BASE_URL } from "@/constants";
 import Link from "next/link";
 import Image from "next/image";
 import Input from "@/components/common/Input";
@@ -39,9 +40,16 @@ function Login() {
   ) => {
     try {
       const { data } = await axios.post<LoginResponseData>(
-        "/api/login",
-        values
+        `${BASE_URL}/accounts/login-user/`,
+        values,
+        {
+          headers: {
+            Accept: "application/json",
+          },
+        }
       );
+
+      sessionStorage.setItem("token", JSON.stringify(data.access));
 
       setToken(data.access);
       toast.success("Login successfull");
