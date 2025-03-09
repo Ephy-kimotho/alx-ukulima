@@ -33,7 +33,11 @@ export interface SignUpInitialValues {
 export interface CategoryCardProps {
     categoryImage: StaticImageData,
     categoryName: string
+}
 
+export interface Categories {
+    id: number,
+    name: string,
 }
 
 export interface TestimonialCardProps {
@@ -53,7 +57,7 @@ export interface ProductDetailProps {
     name: string,
     price: string,
     description: string
-    category: number,
+    category: Categories,
     stock: number
 }
 
