@@ -3,8 +3,9 @@ import { StaticImageData } from "next/image"
 
 export interface ButtonProps {
     children: ReactNode,
-    moreStyles?: string
     action: () => void
+    moreStyles?: string
+    disabled?: boolean
 }
 
 export interface CompanyInfoProps {
@@ -48,11 +49,12 @@ export interface FAQ_QuestionProps {
 
 export interface ProductDetailProps {
     id: number | string,
-    imageUrl: string | StaticImageData,
+    image: string | StaticImageData,
     name: string,
-    category: string,
     price: string,
     description: string
+    category: number,
+    stock: number
 }
 
 export interface CartProductProps {
@@ -76,6 +78,13 @@ export interface CheckoutInitialValues {
 export interface LoginResponseData {
     refresh: string,
     access: string
+}
+
+export interface ProductListingResponse {
+    count: number,
+    next: string | null,
+    previous: string | null,
+    results: ProductDetailProps[]
 }
 
 export type LoginInitialValues = Pick<SignUpInitialValues, "email" | "password">
