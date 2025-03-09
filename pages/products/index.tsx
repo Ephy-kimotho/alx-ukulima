@@ -1,10 +1,72 @@
 import type { ReactElement } from "react";
+import { useState, useEffect, lazy, Suspense, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
+import { useRouter } from "next/router";
 import { montserrat, poppins } from "@/fonts";
-import ProductListing from "@/components/products/ProductListing";
+import { BASE_URL } from "@/constants";
+import { Categories, ProductListingResponse } from "@/interfaces";
 import Layout from "@/layout/Layout";
 import Button from "@/components/common/Button";
+import axios from "axios";
 
-function Products() {
+//Lazily import  the product listing component
+const ProductListing = lazy(
+  () => import("@/components/products/ProductListing")
+);
+
+function Products({ categories }: { categories: Categories[] }) {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  /* State to hold all product listings from database */
+  const [productListings, setProductListings] =
+    useState<ProductListingResponse | null>(null);
+
+  /* State to hold the current page being displayed */
+  const [page, setPage] = useState(1);
+
+  /* Get the category filter from URL search parameters */
+  const selectedCategory = searchParams.get("category") || "";
+
+  /* Side effect to fetch all products from the database */
+  useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const { data } = await axios.get<ProductListingResponse>(
+          `${BASE_URL}/products/list/?ordering=id&page=${page}`
+        );
+
+        setProductListings(data);
+      } catch (error) {
+        console.error("Error getting Product Listing: ", error);
+      }
+    };
+
+    getProducts();
+  }, [page]);
+
+  /* Function to handle category change and update URL */
+  const handleCategoryChange = (category: string) => {
+    const newParams = new URLSearchParams(searchParams.toString());
+    if (category) {
+      newParams.set("category", category);
+    } else {
+      newParams.delete("category");
+    }
+
+    router.push(`/products/?${newParams.toString()}`);
+  };
+
+  /* Function to filter the product listings based on the result */
+  const filteredProducts = useMemo(() => {
+    if (!selectedCategory) {
+      return productListings?.results || [];
+    }
+    return productListings?.results.filter(
+      (product) => product.category.name === selectedCategory
+    );
+  }, [selectedCategory, productListings]);
+
   return (
     <section className="min-h-screen bg-[#fdfbf0]  pb-20">
       {/* Headings */}
@@ -29,15 +91,19 @@ function Products() {
           </label>
           <select
             name="filter-select"
+            value={selectedCategory}
+            onChange={(e) => handleCategoryChange(e.target.value)}
             id="filter-select"
             className="text-night cursor-pointer flex-1 md:flex-none  outline-none"
           >
-            <option defaultValue="" disabled selected>
+            <option value=""  selected>
               -- choose category --
             </option>
-            <option value="seeds">Seeds</option>
-            <option value="pesticides">Pesticides</option>
-            <option value="fertilizers">Fertilizers</option>
+            {categories.map((category, idx) => (
+              <option key={idx} value={category.name}>
+                {category.name}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -60,25 +126,53 @@ function Products() {
       </div>
 
       {/* Product Listing */}
-      <ProductListing />
+      <Suspense
+        fallback={
+          <div className="bg-grey max-w-11/12 min-h-[80svh] text-slate-900 text-xl">
+            <p className="text-center">Loading products</p>
+          </div>
+        }
+      >
+        <ProductListing results={filteredProducts || []} />
+      </Suspense>
 
       {/* Pagination buttons */}
       <div className="flex items-center max-w-[90%] mx-auto justify-between">
         <Button
-          action={() => {}}
-          moreStyles="text-white bg-moss-green py-2 px-10 rounded-md font-bold hover:bg-lime-green cursor-pointer active:scale-95"
+          action={() => setPage((prev) => Math.max(prev - 1, 1))}
+          moreStyles={`text-white bg-moss-green py-2 px-10 rounded-md font-bold hover:bg-lime-green cursor-pointer active:scale-95 disabled:bg-gray-500 disabled:cursor-not-allowed`}
+          disabled={page === 1}
         >
           Prev
         </Button>
         <Button
-          action={() => {}}
-          moreStyles="text-white bg-moss-green py-2 px-10 rounded-md font-bold hover:bg-lime-green cursor-pointer active:scale-95"
+          action={() =>
+            setPage((prev) => (productListings?.next ? prev + 1 : prev))
+          }
+          moreStyles={`text-white bg-moss-green py-2 px-10 rounded-md font-bold hover:bg-lime-green cursor-pointer active:scale-95  disabled:bg-gray-400 disabled:cursor-not-allowed `}
+          disabled={!productListings?.next}
         >
           Next
         </Button>
       </div>
     </section>
   );
+}
+
+export async function getStaticProps() {
+  const { data } = await axios.get<Categories[]>(
+    `${BASE_URL}/products/category/list/`
+  );
+
+  /*   const { data: productListing } = await axios.get<ProductListingResponse>(
+    `${BASE_URL}/products/list/?ordering=id`
+  );
+ */
+  return {
+    props: {
+      categories: data,
+    },
+  };
 }
 
 Products.getLayout = (page: ReactElement) => (

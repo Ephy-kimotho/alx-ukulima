@@ -1,32 +1,33 @@
-import { ProdcutDetailProps } from "@/interfaces";
+import { ProductDetailProps } from "@/interfaces";
 import { nunito } from "@/fonts";
 import Image from "next/image";
-import Button from "../common/Button";
 
-function ProductDetail({ imageUrl, name, price }: ProdcutDetailProps) {
-  const addItemToCart = () => {};
-
+/* className="max-w-sm bg-[#F0F0F0] rounded-xl pb-3 shadow-md text-night" */
+function ProductDetail({ image, name, price, category }: ProductDetailProps) {
   return (
-    <article className="max-w-md bg-[#F0F0F0] rounded-xl pb-3 shadow-md">
+    <article className="max-w-sm min-h-auto bg-[#F0F0F0] rounded-xl pb-3 shadow-md text-night">
       <Image
-        src={imageUrl}
+        src={image}
         alt={name}
-        className="h-2/3 rounded-t-lg object-cover object-center"
+        width={532}
+        height={415}
+        className="w-full h-2/3 rounded-t-lg object-cover object-center"
       />
 
       <div className="m-4">
-        <p className="text-2xl text-mold-green font-semibold">{name}</p>
+        <p className="text-2xl text-moss-green capitalize font-semibold">
+          {name}
+        </p>
         <p
-          className={`${nunito.className} font-medium text-lg text-mold-green  mb-4`}
+          className={`${
+            category > 0 ? "text-mold-green" : "text-imperial-red"
+          } mb-4 capitalize font-medium`}
         >
+          {category > 0 ? `In stock ${category}` : "Out of stock"}
+        </p>
+        <p className={`${nunito.className} text-lg text-lime-green font-bold `}>
           Ksh. {price}
         </p>
-        <Button
-          action={addItemToCart}
-          moreStyles="w-3/5 py-2 text-white md:text-lg font-bold bg-mold-green hover:bg-moss-green rounded-md cursor-pointer"
-        >
-          Add to cart
-        </Button>
       </div>
     </article>
   );
