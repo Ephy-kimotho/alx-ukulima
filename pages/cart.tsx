@@ -1,13 +1,12 @@
-import type { ReactElement } from "react";
 import { useState } from "react";
 import { CartProductProps } from "@/interfaces";
-import Layout from "@/layout/Layout";
 import CartProduct from "@/components/cart/CartProduct";
 import OrderSummary from "@/components/cart/OrderSummary";
 import Button from "@/components/common/Button";
 import pesticide from "@/public/images/pesticides2.png";
 import potash from "@/public/images/potash.png";
 import Checkout from "@/components/cart/Checkout";
+import withAuth from "@/hoc/withAuth";
 
 const items: CartProductProps[] = [
   {
@@ -60,6 +59,4 @@ function Cart() {
   );
 }
 
-Cart.getLayout = (page: ReactElement) => <Layout title="Cart">{page}</Layout>;
-
-export default Cart;
+export default withAuth(Cart);

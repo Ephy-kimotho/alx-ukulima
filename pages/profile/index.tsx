@@ -1,14 +1,13 @@
-import type { ReactElement } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { quicksand } from "@/fonts";
 import { Power } from "lucide-react";
-import Layout from "@/layout/Layout";
 import Button from "@/components/common/Button";
+import withAuth from "@/hoc/withAuth";
 
 function Profile() {
-  //Function to log the user out
+  //TODO: Write function to log the user out
   const signOut = () => {
-    console.log("You have logged out.");
+    console.log("Logged out");
   };
 
   return (
@@ -28,23 +27,22 @@ function Profile() {
         <p className="border-b-2 border-b-night py-2">
           <span className="font-bold">Email: </span> john@yahoo.com
         </p>
+        <p className="border-b-2 border-b-night py-2">
+          <span className="font-bold">Phone: </span> 0100599654
+        </p>
       </div>
 
       <div className="absolute bottom-10">
         <Button
           action={signOut}
-          moreStyles="flex items-center py-4 justify-center text-lg font-bold rounded-xl gap-2 w-52 bg-moss-green tracking-wider hover:scale-105 cursor-pointer active:scale-95"
+          moreStyles="flex items-center py-4 justify-center text-lg font-bold rounded-xl gap-2 w-52 bg-moss-green tracking-wider hover:scale-105 cursor-pointer active:scale-95 text-white"
         >
           <Power />
-          <span>Log out</span>
+          <span className="text-white">Log out</span>
         </Button>
       </div>
     </section>
   );
 }
 
-Profile.getLayout = (page: ReactElement) => (
-  <Layout title="Profile">{page}</Layout>
-);
-
-export default Profile;
+export default withAuth(Profile);
