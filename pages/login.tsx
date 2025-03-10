@@ -82,7 +82,7 @@ function Login() {
       </Head>
       <section className={`${nunito.className} flex min-h-screen`}>
         <Toaster position="top-center" />
-        <div className="hidden md:flex bg-[url(@/public/images/farmImage.png)] bg-left-bottom bg-cover justify-center inset-shadow-translucent flex-1">
+        <div className="hidden md:flex bg-[url(/images/farmImage.png)] bg-left-bottom bg-cover justify-center inset-shadow-translucent flex-1">
           <article className="space-y-12 text-white mt-28 text-center">
             <h2 className="font-bold text-4xl">Ukulima</h2>
 

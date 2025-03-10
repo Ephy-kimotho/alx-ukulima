@@ -7,7 +7,7 @@ function Landing() {
 
   return (
     <section
-      className={` text-white min-h-screen bg-[url(@/public/images/tractor.png)] md:bg-[url(@/public/images/home.png)] bg-no-repeat bg-cover bg-center md:bg-(position:--bg-postion) lg:bg-center inset-shadow-overlay md:inset-shadow-none flex justify-center items-center  `}
+      className={` text-white min-h-screen bg-[url(/images/tractor.png)] md:bg-[url(/images/home.png)] bg-no-repeat bg-cover bg-center md:bg-(position:--bg-postion) lg:bg-center inset-shadow-overlay md:inset-shadow-none flex justify-center items-center  `}
     >
       <div className="pl-10 lg:pl-0 text-balance  max-w-5xl ">
         <h2 className="font-bold text-pretty  text-2xl leading-12 md:text-3xl lg:text-5xl">

@@ -21,7 +21,7 @@ function Mission() {
             to simplify the buying process and enhance productivity.
           </p>
         </div>
-        <div className="bg-[url(@/public/images/dairy.png)] bg-cover bg-center aspect-square rounded-full h-72 md:h-96 w-72 md:rounded-[53px] self-center"></div>
+        <div className="bg-[url(/images/dairy.png)] bg-cover bg-center aspect-square rounded-full h-72 md:h-96 w-72 md:rounded-[53px] self-center"></div>
       </div>
     </section>
   );

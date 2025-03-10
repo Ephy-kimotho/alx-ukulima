@@ -3,7 +3,7 @@ import Link from "next/link";
 
 function CTA() {
   return (
-    <div className="bg-[url(@/public/images/field3.png)] bg-cover bg-right md:bg-center inset-shadow-overlay h-[450px] flex gap-6 flex-col justify-center py-6 pl-6">
+    <div className="bg-[url(/images/field3.png)] bg-cover bg-right md:bg-center inset-shadow-overlay h-[450px] flex gap-6 flex-col justify-center py-6 pl-6">
       <p
         className={`${montserrat.className} text-white font-bold text-3xl md:text-3xl max-w-3xl`}
       >

@@ -25,7 +25,7 @@ function Vision() {
             food security for all.
           </p>
         </div>
-        <div className="bg-[url(@/public/images/smallPlant.jpg)] bg-cover bg-center aspect-square inset-shadow-translucent rounded-full h-72 md:h-96 w-72 md:rounded-[53px] self-center"></div>
+        <div className="bg-[url(/images/smallPlant.jpg)] bg-cover bg-center aspect-square inset-shadow-translucent rounded-full h-72 md:h-96 w-72 md:rounded-[53px] self-center"></div>
       </div>
     </section>
   );
