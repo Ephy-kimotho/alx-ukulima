@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, ReactElement } from "react";
 import { CartProductProps } from "@/interfaces";
 import CartProduct from "@/components/cart/CartProduct";
 import OrderSummary from "@/components/cart/OrderSummary";
@@ -6,7 +6,7 @@ import Button from "@/components/common/Button";
 import pesticide from "@/public/images/pesticides2.png";
 import potash from "@/public/images/potash.png";
 import Checkout from "@/components/cart/Checkout";
-import withAuth from "@/hoc/withAuth";
+import Layout from "@/layout/Layout";
 
 const items: CartProductProps[] = [
   {
@@ -59,4 +59,6 @@ function Cart() {
   );
 }
 
-export default withAuth(Cart);
+Cart.getLayout = (page: ReactElement) => <Layout title="cart">{page}</Layout>;
+
+export default Cart;

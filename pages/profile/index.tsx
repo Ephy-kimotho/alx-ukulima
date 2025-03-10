@@ -1,13 +1,21 @@
 import { FaUserCircle } from "react-icons/fa";
+import type { ReactElement } from "react";
 import { quicksand } from "@/fonts";
 import { Power } from "lucide-react";
 import Button from "@/components/common/Button";
-import withAuth from "@/hoc/withAuth";
+import Layout from "@/layout/Layout";
+import { useAuth } from "@/providers/AuthProvider";
+import { useRouter } from "next/router";
 
 function Profile() {
+  const { user, setToken, setUser } = useAuth();
+  const router = useRouter();
+
   //TODO: Write function to log the user out
   const signOut = () => {
-    console.log("Logged out");
+    setUser(null);
+    setToken(null);
+    router.push("/");
   };
 
   return (
@@ -17,18 +25,19 @@ function Profile() {
       <div className="space-y-5">
         <FaUserCircle className="size-32 md:size-40 mx-auto text-night" />
         <p className="text-night text-2xl md:text-3xl font-bold">
-          Hello John Doe.
+          Hello {user?.first_name} {user?.last_name}
         </p>
       </div>
       <div className="text-black space-y-4 w-[80%] max-w-sm  text-lg mt-5 ">
         <p className="border-b-2 border-b-night py-2">
-          <span className="font-bold">Full Name: </span> John Doe
+          <span className="font-bold">Full Name: </span>
+          {user?.first_name} {user?.last_name}
         </p>
         <p className="border-b-2 border-b-night py-2">
-          <span className="font-bold">Email: </span> john@yahoo.com
+          <span className="font-bold">Email: </span> {user?.email}
         </p>
         <p className="border-b-2 border-b-night py-2">
-          <span className="font-bold">Phone: </span> 0100599654
+          <span className="font-bold">Phone: </span> {user?.phone}
         </p>
       </div>
 
@@ -45,4 +54,8 @@ function Profile() {
   );
 }
 
-export default withAuth(Profile);
+Profile.getLayout = (page: ReactElement) => (
+  <Layout title="profile">{page}</Layout>
+);
+
+export default Profile;
