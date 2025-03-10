@@ -2,17 +2,17 @@ import { ProductDetailProps } from "@/interfaces";
 import { nunito } from "@/fonts";
 import Image from "next/image";
 
-/* className="max-w-sm bg-[#F0F0F0] rounded-xl pb-3 shadow-md text-night" */
-function ProductDetail({ image, name, price, category }: ProductDetailProps) {
+function ProductDetail({ image, name, price, stock }: ProductDetailProps) {
   return (
-    <article className="max-w-sm min-h-auto bg-[#F0F0F0] rounded-xl pb-3 shadow-md text-night">
-      <Image
-        src={image}
-        alt={name}
-        width={532}
-        height={415}
-        className="w-full h-2/3 rounded-t-lg object-cover object-center"
-      />
+    <article className="max-w-sm  bg-[#f0f0f0] rounded-xl pb-3 shadow-md text-night">
+      <div className="w-full h-[300px] block relative">
+        <Image
+          src={image}
+          alt={name}
+          fill
+          className="object-cover rounded-t-xl"
+        />
+      </div>
 
       <div className="m-4">
         <p className="text-2xl text-moss-green capitalize font-semibold">
@@ -20,10 +20,10 @@ function ProductDetail({ image, name, price, category }: ProductDetailProps) {
         </p>
         <p
           className={`${
-            category > 0 ? "text-mold-green" : "text-imperial-red"
+            stock > 0 ? "text-mold-green" : "text-imperial-red"
           } mb-4 capitalize font-medium`}
         >
-          {category > 0 ? `In stock ${category}` : "Out of stock"}
+          {stock > 0 ? `In stock: ${stock}` : "Out of stock"}
         </p>
         <p className={`${nunito.className} text-lg text-lime-green font-bold `}>
           Ksh. {price}
