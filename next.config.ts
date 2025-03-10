@@ -11,8 +11,12 @@ const nextConfig: NextConfig = {
         port: '8000',
         pathname: '/media/products/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com',
+        pathname: '/**',
+      },
     ],
-    domains: ["res.cloudinary.com"],
   },
 };
 
