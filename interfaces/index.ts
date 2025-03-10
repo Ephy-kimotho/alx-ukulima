@@ -57,7 +57,7 @@ export interface ProductDetailProps {
     name: string,
     price: string,
     description: string
-    category: Categories,
+    category: number,
     stock: number
 }
 
