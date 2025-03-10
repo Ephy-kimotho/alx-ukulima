@@ -29,7 +29,10 @@ function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const storedToken = window.sessionStorage.getItem("token");
+      const storedUser = window.localStorage.getItem("user");
+      
       if (storedToken) setToken(JSON.parse(storedToken));
+      if (storedUser) setUser(JSON.parse(storedUser));
     }
   }, []);
 

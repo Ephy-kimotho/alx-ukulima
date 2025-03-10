@@ -43,12 +43,13 @@ function Signup() {
   ) => {
     try {
       const { data } = await axios.post<User>("/api/signup", values);
+
+      localStorage.setItem("user", JSON.stringify(data));
       setUser(data);
 
       toast.success("Account created successfully");
       router.push("/login");
       action.resetForm();
-
     } catch (err) {
       if (axios.isAxiosError(err)) {
         if (err.response?.data.email || err.response?.data.phone) {
