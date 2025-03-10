@@ -10,7 +10,6 @@ Welcome to Ukulima, an e-commerce platform designed to help farmers purchase far
 - **Filtering:** Easily find products using category-based filtering.
 - **Product Details:** View in-depth information about each product.
 - **Authentication:** Users can sign up, log in, and manage their accounts.
-- **Cart Management:** Add products to the cart and proceed to checkout.
 
 ## 🛠️ How I Built It
 
@@ -22,6 +21,8 @@ This application was developed using:
 - **Lucide React & React Icons** for intuitive UI components.
 - **Context API** for managing authentication and user state.
 - **Axios** for making API requests.
+- **Formik** for building the forms.
+- **Yup** for form validation.
 
 ### Application Structure
 
@@ -42,15 +43,14 @@ During development, I encountered several challenges, including:
 - **Maintaining Query Parameters:** Ensuring category filters persist across page reloads.
 - **State Management:** Efficiently managing authentication and cart state with the Context API.
 - **API Handling:** Creating and managing API routes efficiently in Next.js.
-- **Protecting Routes:** Implementing authentication guards using Higher-Order Components (HOCs).
 
 ## 📚 What I Learned
 
 Throughout this project, I gained valuable experience in:
 
-- **Higher-Order Components (HOCs):** Implementing HOCs for authentication-based route protection.
 - **Creating API Routes in Next.js:** Setting up backend endpoints for product retrieval and user authentication.
 - **State Management with Context API:** Managing global state efficiently without external libraries.
+- **File Based routing:** how to route statically and also dynamically within a next js application.
 
 ## 🌟 What I Am Most Proud Of
 
